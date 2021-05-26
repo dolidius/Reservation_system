@@ -2,6 +2,7 @@ import React from 'react';
 import 'antd/dist/antd.css';
 
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import store from './redux/store';
 
@@ -12,8 +13,10 @@ import Home from './components/Screens/Home/Home';
 const App = () => {
     return (
         <Provider store={store}>
-            <GlobalStyle />
-            <Home />
+            <Router>
+                <GlobalStyle />
+                <Route path="/" exact component={Home} />
+            </Router>
         </Provider>
     );
 }
