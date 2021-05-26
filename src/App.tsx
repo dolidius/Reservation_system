@@ -6,7 +6,7 @@ import store from './redux/store';
 
 import GlobalStyle from './App.style';
 
-function App() {
+const App = () => {
     return (
         <Provider store={store}>
             <GlobalStyle />
