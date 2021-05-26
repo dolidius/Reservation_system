@@ -6,13 +6,13 @@ import store from './redux/store';
 
 import GlobalStyle from './App.style';
 
+import Home from './components/Screens/Home/Home';
+
 const App = () => {
     return (
         <Provider store={store}>
             <GlobalStyle />
-            <div>
-                test
-            </div>
+            <Home />
         </Provider>
     );
 }
