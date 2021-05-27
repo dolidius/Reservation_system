@@ -2,15 +2,26 @@ import React, { useEffect } from 'react';
 
 import { Form, InputNumber, Button, Checkbox } from 'antd';
 
+import { RouteComponentProps } from 'react-router-dom';
+
 import { ViewportContainer } from '../../../styles/Layout/Container.style';
 import axios from 'axios';
 
-const Home = () => {
+interface IFormValues {
+    tickets_number: number;
+    next_to_each_other: boolean;
+}
+
+interface IProps {
+    history: RouteComponentProps['history'];
+}
+
+const Home: React.FC<IProps>  = ({ history }) => {
 
     const [form] = Form.useForm();
 
-    const onFinish = (values: any) => {
-        console.log(values);
+    const onFinish = (values: IFormValues) => {
+        history.push("/rezerwacja");
     }
 
     useEffect(() => {
@@ -27,7 +38,7 @@ const Home = () => {
                 <Form.Item name="tickets_number" rules={[{ required: true }]}>
                     <InputNumber />
                 </Form.Item>
-                <Form.Item>
+                <Form.Item name="next_to_each_other" valuePropName="checked">
                     <Checkbox>
                         Czy miejsca mają być obok siebie?
                     </Checkbox>
