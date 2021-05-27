@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react';
 
+import { connect } from 'react-redux';
+
+import { getSeats } from '../../../redux/actions/seatsActions';
+
 import { Form, InputNumber, Button, Checkbox } from 'antd';
 
 import { RouteComponentProps } from 'react-router-dom';
@@ -14,13 +18,15 @@ interface IFormValues {
 
 interface IProps {
     history: RouteComponentProps['history'];
+    getSeats: () => void;
 }
 
-const Home: React.FC<IProps>  = ({ history }) => {
+const Home: React.FC<IProps>  = ({ history, getSeats }) => {
 
     const [form] = Form.useForm();
 
     const onFinish = (values: IFormValues) => {
+        getSeats();
         history.push("/rezerwacja");
     }
 
@@ -53,4 +59,6 @@ const Home: React.FC<IProps>  = ({ history }) => {
     )
 }
 
-export default Home;
+const mapStateToProps = () => ({});
+
+export default connect((mapStateToProps), { getSeats })(Home);
