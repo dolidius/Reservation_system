@@ -1,7 +1,9 @@
 import { combineReducers } from "redux";
 
-const rootReducer = combineReducers({
+import seatsReducer from './seatsReducer';
 
+const rootReducer = combineReducers({
+    seats: seatsReducer
 });
 
 export default rootReducer;
