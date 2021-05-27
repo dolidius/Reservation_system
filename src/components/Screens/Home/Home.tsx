@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Form, InputNumber, Button, Checkbox } from 'antd';
 
 import { ViewportContainer } from '../../../styles/Layout/Container.style';
+import axios from 'axios';
 
 const Home = () => {
 
@@ -11,6 +12,14 @@ const Home = () => {
     const onFinish = (values: any) => {
         console.log(values);
     }
+
+    useEffect(() => {
+        let config = {
+            headers: {'Access-Control-Allow-Origin': '*'}
+        };
+        
+        axios.get('/seats', config).then(res => console.log(res.data)).catch(e => console.log(e));
+    }, [])
 
     return (
         <ViewportContainer centered>
