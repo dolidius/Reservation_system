@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AvailableSeat, ChosenSeat, ReservedSeat, DisabledSeat } from './Seat.style';
+import { AvailableSeat, ChosenSeat, ReservedSeat } from './Seat.style';
 
 interface IProps {
     type: string;
@@ -15,7 +15,6 @@ const Seat: React.FC<IProps> = ({ type, col, row }) => {
             {type === 'available' && <AvailableSeat col={col} row={row} />}
             {type === 'chosen' && <ChosenSeat col={col} row={row} />}
             {type === 'reserved' && <ReservedSeat col={col} row={row} />}
-            {type === 'disabled' && <DisabledSeat col={col} row={row} />}
 
         </>
     )

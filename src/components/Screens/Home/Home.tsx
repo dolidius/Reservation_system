@@ -9,7 +9,6 @@ import { Form, InputNumber, Button, Checkbox } from 'antd';
 import { RouteComponentProps } from 'react-router-dom';
 
 import { ViewportContainer } from '../../../styles/Layout/Container.style';
-import axios from 'axios';
 
 interface IFormValues {
     tickets_number: number;

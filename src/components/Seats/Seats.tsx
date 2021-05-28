@@ -12,6 +12,11 @@ interface IProps {
 }
 
 const Seats: React.FC<IProps> = ({ gridX, gridY, seats }) => {
+
+    const getType = () => {
+        
+    }
+
     return (
         <SeatsGrid gridX={gridX} gridY={gridY}>
             {seats.map(seat => {
@@ -19,8 +24,8 @@ const Seats: React.FC<IProps> = ({ gridX, gridY, seats }) => {
                 return (
                     <Seat
                         type="available"
-                        col={seat.cords.x + 1}
-                        row={seat.cords.y + 1}
+                        col={seat.cords.y + 1}
+                        row={seat.cords.x + 1}
                     />
                 )
             })}
