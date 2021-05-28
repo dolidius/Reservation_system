@@ -1,6 +1,6 @@
-import ISeats from "../ISeats";
+import ISeat from "../ISeat";
 
 export default interface ISeatsState {
     loading: boolean;
-    seats: ISeats[];
+    seats: ISeat[];
 }
