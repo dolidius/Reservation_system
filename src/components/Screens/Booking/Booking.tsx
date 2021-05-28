@@ -29,7 +29,7 @@ const Booking: React.FC<IProps> = ({ seatsStore }) => {
 
             const { x, y } = seat.cords;
 
-            if (verticalGrid === null || verticalGrid > x) { 
+            if (verticalGrid === null || verticalGrid < x) { 
                 verticalGrid = x;
             }
 

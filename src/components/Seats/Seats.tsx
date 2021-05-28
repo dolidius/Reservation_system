@@ -3,6 +3,8 @@ import ISeat from '../../interfaces/ISeat';
 
 import Seat from './Seat/Seat';
 
+import { SeatsGrid } from './Seats.style';
+
 interface IProps {
     gridX: number;
     gridY: number;
@@ -12,7 +14,9 @@ interface IProps {
 
 const Seats: React.FC<IProps> = ({ gridX, gridY, seats }) => {
     return (
-        <Seat />
+        <SeatsGrid gridX={gridX} gridY={gridY}>
+
+        </SeatsGrid>
     )
 }
 

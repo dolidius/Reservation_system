@@ -1,15 +1,22 @@
 import React from 'react';
 
-import { EmptySeat, ChosenSeat, ReservedSeat } from './Seat.style';
+import { AvailableSeat, ChosenSeat, ReservedSeat, DisabledSeat } from './Seat.style';
 
-const Seat = () => {
+interface IProps {
+    type: string;
+}
+
+const Seat: React.FC<IProps> = ({ type }) => {
     
     return (
-        <div>
-            <EmptySeat />
-            <ChosenSeat />
-            <ReservedSeat />
-        </div>
+        <>
+        
+            {type === 'available' && <AvailableSeat />}
+            {type === 'chosen' && <ChosenSeat />}
+            {type === 'reserved' && <ReservedSeat />}
+            {type === 'disabled' && <DisabledSeat />}
+
+        </>
     )
 
 }
