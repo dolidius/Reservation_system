@@ -30,14 +30,6 @@ const Home: React.FC<IProps>  = ({ history, getSeats }) => {
         history.push("/rezerwacja");
     }
 
-    useEffect(() => {
-        let config = {
-            headers: {'Access-Control-Allow-Origin': '*'}
-        };
-        
-        axios.get('/seats', config).then(res => console.log(res.data)).catch(e => console.log(e));
-    }, [])
-
     return (
         <ViewportContainer centered>
             <Form form={form} name="tickets" onFinish={onFinish}>
