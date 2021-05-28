@@ -4,17 +4,18 @@ import { AvailableSeat, ChosenSeat, ReservedSeat, DisabledSeat } from './Seat.st
 
 interface IProps {
     type: string;
+    col: number;
+    row: number;
 }
 
-const Seat: React.FC<IProps> = ({ type }) => {
+const Seat: React.FC<IProps> = ({ type, col, row }) => {
     
     return (
         <>
-        
-            {type === 'available' && <AvailableSeat />}
-            {type === 'chosen' && <ChosenSeat />}
-            {type === 'reserved' && <ReservedSeat />}
-            {type === 'disabled' && <DisabledSeat />}
+            {type === 'available' && <AvailableSeat col={col} row={row} />}
+            {type === 'chosen' && <ChosenSeat col={col} row={row} />}
+            {type === 'reserved' && <ReservedSeat col={col} row={row} />}
+            {type === 'disabled' && <DisabledSeat col={col} row={row} />}
 
         </>
     )

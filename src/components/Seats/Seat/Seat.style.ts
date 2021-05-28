@@ -1,8 +1,19 @@
 import styled from "styled-components";
 
+interface ISeatProps {
+    col: number;
+    row: number;
+}
+
 export const Seat = styled.div`
     width: 30px;
     height: 30px;
+
+    grid-column-start: ${(props: ISeatProps) => props.col};
+    grid-column-end: ${(props: ISeatProps) => props.col + 1};
+
+    grid-column-start: ${(props: ISeatProps) => props.row};
+    grid-column-end: ${(props: ISeatProps) => props.row + 1};
 `;
 
 export const AvailableSeat = styled(Seat)`
