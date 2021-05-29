@@ -6,8 +6,8 @@ interface ISeatProps {
 }
 
 export const Seat = styled.div`
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
 
     grid-column-start: ${(props: ISeatProps) => props.col};
     grid-column-end: ${(props: ISeatProps) => props.col + 1};

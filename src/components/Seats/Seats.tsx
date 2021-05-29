@@ -20,10 +20,9 @@ const Seats: React.FC<IProps> = ({ gridX, gridY, seats }) => {
     return (
         <SeatsGrid gridX={gridX} gridY={gridY}>
             {seats.map(seat => {
-                console.log(seat.cords);
                 return (
                     <Seat
-                        type="available"
+                        type={seat.reserved ? "reserved" : "available"}
                         col={seat.cords.y + 1}
                         row={seat.cords.x + 1}
                     />
