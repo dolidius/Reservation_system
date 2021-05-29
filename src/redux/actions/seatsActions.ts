@@ -6,12 +6,16 @@ let config = {
     headers: {'Access-Control-Allow-Origin': '*'}
 };
 
-export const getSeats = () => (dispatch: any) => {
+export const getSeats = (seatsToChoose: number, nextToEachOther: boolean) => (dispatch: any) => {
     dispatch(setSeatsLoading());
     axios.get('/seats', config)
         .then(res => dispatch({
             type: GET_SEATS,
-            payload: res.data
+            payload: {
+                seatsToChoose,
+                nextToEachOther,
+                seats: res.data
+            }
         }))
         .catch(e => console.log(e));
 }

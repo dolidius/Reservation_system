@@ -4,7 +4,9 @@ import { GET_SEATS, SET_SEATS_LOADING } from '../types/seatsTypes';
 
 const initialState: ISeatsState = {
     loading: false,
-    seats: []
+    seats: [],
+    seatsToChoose: 0,
+    nextToEachOther: false
 };
 
 const seatsReducer = (state: ISeatsState = initialState, action: IReducerAction) => {
@@ -13,7 +15,9 @@ const seatsReducer = (state: ISeatsState = initialState, action: IReducerAction)
             return {
                 ...state,
                 loading: false,
-                seats: action.payload
+                seats: action.payload.seats,
+                seatsToChoose: action.payload.seatsToChoose,
+                nextToEachOther: action.payload.nextToEachOther
             }
         case SET_SEATS_LOADING: 
             return {

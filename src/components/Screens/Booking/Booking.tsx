@@ -6,11 +6,14 @@ import ISeatsState from '../../../interfaces/storeStates/ISeatsState';
 import Seats from '../../Seats/Seats';
 import Spinner from '../../Helpers/Spinner/Spinner';
 
+import IFormValues from '../../../interfaces/IFormValues';
+
 interface IProps {
-    seatsStore: ISeatsState
+    seatsStore: ISeatsState,
+    state: IFormValues
 }
 
-const Booking: React.FC<IProps> = ({ seatsStore }) => {
+const Booking: React.FC<IProps> = ({ seatsStore, state }) => {
 
     const [verticalGrid, setVerticalGrid] = useState(-1);
     const [horizontalGrid, setHorizontalGrid] = useState(-1);
@@ -18,7 +21,11 @@ const Booking: React.FC<IProps> = ({ seatsStore }) => {
     useEffect(() => {
         console.log(seatsStore);
         findSeatsGrid();
-    }, [seatsStore])
+    }, [seatsStore]);
+
+    useEffect(() => {
+        console.log(state);
+    },[state])
 
     const findSeatsGrid = () => {
 

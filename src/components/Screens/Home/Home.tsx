@@ -4,20 +4,18 @@ import { connect } from 'react-redux';
 
 import { getSeats } from '../../../redux/actions/seatsActions';
 
+
 import { Form, InputNumber, Button, Checkbox } from 'antd';
 
 import { RouteComponentProps } from 'react-router-dom';
 
 import { ViewportContainer } from '../../../styles/Layout/Container.style';
 
-interface IFormValues {
-    tickets_number: number;
-    next_to_each_other: boolean;
-}
+import IFormValues from '../../../interfaces/IFormValues';
 
 interface IProps {
     history: RouteComponentProps['history'];
-    getSeats: () => void;
+    getSeats: (seatsToChoose: number, nextToEachOther: boolean) => void;
 }
 
 const Home: React.FC<IProps>  = ({ history, getSeats }) => {
@@ -25,8 +23,12 @@ const Home: React.FC<IProps>  = ({ history, getSeats }) => {
     const [form] = Form.useForm();
 
     const onFinish = (values: IFormValues) => {
-        getSeats();
-        history.push("/rezerwacja");
+        console.log(values);
+        getSeats(values.tickets_number, values.next_to_each_other);
+        history.push({
+            pathname: "/rezerwacja",
+            state: values
+        });
     }
 
     return (
@@ -35,7 +37,7 @@ const Home: React.FC<IProps>  = ({ history, getSeats }) => {
                 <Form.Item name="tickets_number" rules={[{ required: true }]}>
                     <InputNumber />
                 </Form.Item>
-                <Form.Item name="next_to_each_other" valuePropName="checked">
+                <Form.Item name="next_to_each_other" valuePropName="checked" initialValue={false}>
                     <Checkbox>
                         Czy miejsca mają być obok siebie?
                     </Checkbox>
