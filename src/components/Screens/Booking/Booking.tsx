@@ -8,6 +8,8 @@ import Spinner from '../../Helpers/Spinner/Spinner';
 
 import IFormValues from '../../../interfaces/IFormValues';
 import { RouteComponentProps } from 'react-router-dom';
+import { ViewportContainer } from '../../../styles/Layout/Container.style';
+import { SeatsContainer } from './Booking.style';
 
 interface IProps {
     history: RouteComponentProps['history'],
@@ -32,39 +34,43 @@ const Booking: React.FC<IProps> = ({ history, seatsStore }) => {
 
             const { x, y } = seat.cords;
 
-            if (verticalGrid === null || verticalGrid < x) { 
+            if (verticalGrid === null || verticalGrid < x) {
                 verticalGrid = x;
             }
 
-            if (horizontalGrid === null || horizontalGrid < y) { 
+            if (horizontalGrid === null || horizontalGrid < y) {
                 horizontalGrid = y;
             }
 
         })
- 
-        if (verticalGrid === null) verticalGrid = -1; 
-        if (horizontalGrid === null) horizontalGrid = -1; 
+
+        if (verticalGrid === null) verticalGrid = -1;
+        if (horizontalGrid === null) horizontalGrid = -1;
 
         setVerticalGrid(verticalGrid);
         setHorizontalGrid(horizontalGrid);
- 
+
     }
 
     if (seatsStore.loading) {
         return (
             <Spinner />
         )
-    } 
+    }
 
     return (
-        <Seats
-            history={history}
-            gridX={verticalGrid + 1}
-            gridY={horizontalGrid + 1}
-            seats={seatsStore.seats}
-            seatsToChoose={seatsStore.seatsToChoose}
-            nextToEachOther={seatsStore.nextToEachOther}
-        />
+        <ViewportContainer>
+            <SeatsContainer>
+                <Seats
+                    history={history}
+                    gridX={verticalGrid + 1}
+                    gridY={horizontalGrid + 1}
+                    seats={seatsStore.seats}
+                    seatsToChoose={seatsStore.seatsToChoose}
+                    nextToEachOther={seatsStore.nextToEachOther}
+                />
+            </SeatsContainer>
+        </ViewportContainer>
     )
 
 }

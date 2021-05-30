@@ -12,15 +12,27 @@ import Home from './components/Screens/Home/Home';
 import Booking from './components/Screens/Booking/Booking';
 import BookingSuccess from './components/Screens/BookingSuccess/BookingSuccess';
 
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#5646B1'
+        }
+    },
+});
+
 const App = () => {
     return (
         <Provider store={store}>
-            <Router>
-                <GlobalStyle />
-                <Route path="/" exact component={Home} />
-                <Route path="/rezerwacja" exact component={Booking} />
-                <Route path="/rezerwacja/success" exact component={BookingSuccess} />
-            </Router>
+            <ThemeProvider theme={theme}>
+                <Router>
+                    <GlobalStyle />
+                    <Route path="/" exact component={Home} />
+                    <Route path="/rezerwacja" exact component={Booking} />
+                    <Route path="/rezerwacja/success" exact component={BookingSuccess} />
+                </Router>
+            </ThemeProvider>
         </Provider>
     );
 }

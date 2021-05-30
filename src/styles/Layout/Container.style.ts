@@ -22,6 +22,8 @@ export const ViewportContainer = styled.div`
         align-items: center;
     `}
 
+    background: #251464;
+
     /* background: #D3CCE3; 
     background: -webkit-linear-gradient(
         to right,
