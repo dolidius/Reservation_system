@@ -1,0 +1,1 @@
+export const SET_BOOKING_SEATS = 'SET_BOOKING_SEATS';
