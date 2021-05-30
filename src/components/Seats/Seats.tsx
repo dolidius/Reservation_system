@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ICords from '../../interfaces/ICords';
 import ISeat from '../../interfaces/ISeat';
 
 import Seat from './Seat/Seat';
@@ -19,9 +20,10 @@ interface IInterval {
     row: number;
 }
 
+
 const Seats: React.FC<IProps> = ({ gridX, gridY, seats, seatsToChoose, nextToEachOther }) => {
 
-    const [intervals, setIntervals] = useState<IInterval[]>([]);
+    const [chosenSeats, setChosenSeats] = useState<ICords[]>([]);
 
     useEffect(() => {
         chooseDefaultSeats()
@@ -80,7 +82,6 @@ const Seats: React.FC<IProps> = ({ gridX, gridY, seats, seatsToChoose, nextToEac
         let amountToChoose = seatsToChoose;
 
         for (const interval of intervals) {
-            console.log(interval);
             const intervalLength = (interval.endY - interval.startY) + 1;
 
             if (intervalLength === amountToChoose) {
@@ -102,20 +103,35 @@ const Seats: React.FC<IProps> = ({ gridX, gridY, seats, seatsToChoose, nextToEac
 
         }
 
-        setIntervals(pickedIntervals);
+        return convertIntervalsToCords(pickedIntervals);
+
+    }
+
+    const convertIntervalsToCords = (intervals: IInterval[]) => {
+
+        const defaultSeats: ICords[] = [];
+
+        intervals.forEach(interval => {
+            console.log(interval);
+            for (let i = interval.startY; i <= interval.endY; i ++) {
+                defaultSeats.push({ x: interval.row, y: i });
+            }
+
+        });
+
+        return defaultSeats;
 
     }
 
     const findFristAvailableSeats = () => {
-        const intervals: IInterval[] = [];
+        const defaultSeats: ICords[] = [];
 
         let amount = 0;
 
         for (const seat of seats) {
-            const { x, y } = seat.cords;
 
             if (!seat.reserved) {
-                intervals.push({startY: y, endY: y, row: x});
+                defaultSeats.push(seat.cords);
                 amount ++;
             }
 
@@ -125,26 +141,47 @@ const Seats: React.FC<IProps> = ({ gridX, gridY, seats, seatsToChoose, nextToEac
 
         }
 
-        setIntervals(intervals);
+        return defaultSeats;
 
     }
 
     const chooseDefaultSeats = () => {
 
         if (!nextToEachOther) {
-            findFristAvailableSeats();
+            setChosenSeats(findFristAvailableSeats());
         } else {
-            findCloseSeats();
+            setChosenSeats(findCloseSeats());
         }
 
     }
 
+    const checkIfDefault = (seat: ISeat) => {
+
+        for (const chosenSeat of chosenSeats) {
+            if (seat.cords.x === chosenSeat.x && seat.cords.y === chosenSeat.y) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    const getSeatType = (seat: ISeat) => {
+        if (seat.reserved) {
+            return "reserved";
+        } else if (checkIfDefault(seat)) {
+            return "chosen"
+        }
+
+        return "available";
+    }
+
     return (
         <SeatsGrid gridX={gridX} gridY={gridY}>
-            {seats.map(seat => {
+            {chosenSeats.length > 0 && seats.map(seat => {
                 return (
                     <Seat
-                        type={seat.reserved ? "reserved" : "available"}
+                        type={getSeatType(seat)}
                         col={seat.cords.y + 1}
                         row={seat.cords.x + 1}
                     />
