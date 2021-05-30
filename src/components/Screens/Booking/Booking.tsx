@@ -10,22 +10,16 @@ import IFormValues from '../../../interfaces/IFormValues';
 
 interface IProps {
     seatsStore: ISeatsState,
-    state: IFormValues
 }
 
-const Booking: React.FC<IProps> = ({ seatsStore, state }) => {
+const Booking: React.FC<IProps> = ({ seatsStore }) => {
 
     const [verticalGrid, setVerticalGrid] = useState(-1);
     const [horizontalGrid, setHorizontalGrid] = useState(-1);
 
     useEffect(() => {
-        console.log(seatsStore);
         findSeatsGrid();
     }, [seatsStore]);
-
-    useEffect(() => {
-        console.log(state);
-    },[state])
 
     const findSeatsGrid = () => {
 
