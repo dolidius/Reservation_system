@@ -21,4 +21,8 @@ export const ViewportContainer = styled.div`
         justify-content: center;
         align-items: center;
     `}
+
+    background: linear-gradient(rgba(0,0,0, 0.9), rgba(0,0,0, 0.8)), url('https://images.pexels.com/photos/375885/pexels-photo-375885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background-size: cover;
+    background-position: center;
 `;
