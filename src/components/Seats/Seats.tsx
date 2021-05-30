@@ -2,16 +2,23 @@ import React, { useEffect, useState } from 'react';
 import ICords from '../../interfaces/ICords';
 import ISeat from '../../interfaces/ISeat';
 
-import Seat from './Seat/Seat';
+import { connect } from 'react-redux';
 
-import { SeatsGrid } from './Seats.style';
+import { setBookingSeats } from '../../redux/actions/bookingActions';
+
+import SeatsGridContainer from './SeatsGridContainer';
+
+import { Button } from 'antd';
+import { RouteComponentProps } from 'react-router-dom';
 
 interface IProps {
+    history: RouteComponentProps['history'],
     gridX: number;
     gridY: number;
     seats: ISeat[];
     seatsToChoose: number;
     nextToEachOther: boolean;
+    setBookingSeats: (bookedSeats: ICords[]) => object;
 }
 
 interface IInterval {
@@ -20,8 +27,7 @@ interface IInterval {
     row: number;
 }
 
-
-const Seats: React.FC<IProps> = ({ gridX, gridY, seats, seatsToChoose, nextToEachOther }) => {
+const Seats: React.FC<IProps> = ({ history, gridX, gridY, seats, seatsToChoose, nextToEachOther, setBookingSeats }) => {
 
     const [chosenSeats, setChosenSeats] = useState<ICords[]>([]);
 
@@ -48,22 +54,17 @@ const Seats: React.FC<IProps> = ({ gridX, gridY, seats, seatsToChoose, nextToEac
                 if (!seat.reserved) {
                     startY = y;
                 }
-                
-            } else {
 
-                if (x > lastX || y - 1 !== lastY || seat.reserved) {
-                    endY = lastY;
-                    intervals.push({
-                        startY, endY, row: x > lastX ? lastX : x
-                    });
+            } else if (x > lastX || y - 1 !== lastY || seat.reserved) {
+                endY = lastY;
+                intervals.push({
+                    startY, endY, row: x > lastX ? lastX : x
+                });
 
-                    if (seat.reserved) {
-                        startY = -1;
-                    } else {
-                        startY = y;
-
-                    }
-
+                if (seat.reserved) {
+                    startY = -1;
+                } else {
+                    startY = y;
                 }
 
             }
@@ -112,8 +113,7 @@ const Seats: React.FC<IProps> = ({ gridX, gridY, seats, seatsToChoose, nextToEac
         const defaultSeats: ICords[] = [];
 
         intervals.forEach(interval => {
-            console.log(interval);
-            for (let i = interval.startY; i <= interval.endY; i ++) {
+            for (let i = interval.startY; i <= interval.endY; i++) {
                 defaultSeats.push({ x: interval.row, y: i });
             }
 
@@ -132,7 +132,7 @@ const Seats: React.FC<IProps> = ({ gridX, gridY, seats, seatsToChoose, nextToEac
 
             if (!seat.reserved) {
                 defaultSeats.push(seat.cords);
-                amount ++;
+                amount++;
             }
 
             if (amount === seatsToChoose) {
@@ -155,36 +155,12 @@ const Seats: React.FC<IProps> = ({ gridX, gridY, seats, seatsToChoose, nextToEac
 
     }
 
-    const checkIfDefault = (seat: ISeat) => {
-
-        for (const chosenSeat of chosenSeats) {
-            if (seat.cords.x === chosenSeat.x && seat.cords.y === chosenSeat.y) {
-                return true;
-            }
-        }
-        
-        return false;
-    }
-
-    const getSeatType = (seat: ISeat) => {
-        if (seat.reserved) {
-            return "reserved";
-        } else if (checkIfDefault(seat)) {
-            return "chosen"
-        }
-
-        return "available";
-    }
-
     const onSeatAvailableClick = (x: number, y: number) => {
 
         if (chosenSeats.length < seatsToChoose) {
             setChosenSeats([]);
-
             let newChosenSeats = chosenSeats;
-
             newChosenSeats.push({ x, y });
-
             setChosenSeats([...newChosenSeats]);
         }
 
@@ -193,28 +169,37 @@ const Seats: React.FC<IProps> = ({ gridX, gridY, seats, seatsToChoose, nextToEac
     const onSeatChosenClick = (x: number, y: number) => {
 
         let newChosenSeats = chosenSeats;
-
         newChosenSeats = newChosenSeats.filter(seat => seat.x != x || seat.y != y);
-
         setChosenSeats(newChosenSeats);
 
     }
 
+    const submitSeats = () => {
+
+        setBookingSeats(chosenSeats);
+        console.log('elo')
+
+        history.push({
+            pathname: "/rezerwacja/success",
+        });
+    }
+
     return (
-        <SeatsGrid gridX={gridX} gridY={gridY}>
-            {seats.map(seat => {
-                return (
-                    <Seat
-                        type={getSeatType(seat)}
-                        col={seat.cords.y + 1}
-                        row={seat.cords.x + 1}
-                        onSeatAvailableClick={onSeatAvailableClick}
-                        onSeatChosenClick={onSeatChosenClick}
-                    />
-                )
-            })}
-        </SeatsGrid>
+        <div>
+            <SeatsGridContainer
+                gridX={gridX}
+                gridY={gridY}
+                seats={seats}
+                chosenSeats={chosenSeats}
+                onSeatAvailableClick={onSeatAvailableClick}
+                onSeatChosenClick={onSeatChosenClick}
+            />
+
+            <Button onClick={submitSeats} type="primary">
+                Rezerwuj
+            </Button>
+        </div>
     )
 }
 
-export default Seats;
+export default connect(null, { setBookingSeats })(Seats);

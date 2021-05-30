@@ -7,12 +7,14 @@ import Seats from '../../Seats/Seats';
 import Spinner from '../../Helpers/Spinner/Spinner';
 
 import IFormValues from '../../../interfaces/IFormValues';
+import { RouteComponentProps } from 'react-router-dom';
 
 interface IProps {
+    history: RouteComponentProps['history'],
     seatsStore: ISeatsState,
 }
 
-const Booking: React.FC<IProps> = ({ seatsStore }) => {
+const Booking: React.FC<IProps> = ({ history, seatsStore }) => {
 
     const [verticalGrid, setVerticalGrid] = useState(-1);
     const [horizontalGrid, setHorizontalGrid] = useState(-1);
@@ -55,7 +57,8 @@ const Booking: React.FC<IProps> = ({ seatsStore }) => {
     } 
 
     return (
-        <Seats 
+        <Seats
+            history={history}
             gridX={verticalGrid + 1}
             gridY={horizontalGrid + 1}
             seats={seatsStore.seats}

@@ -10,7 +10,8 @@ const bookingReducer = (state = initialState, action: IReducerAction) => {
     switch(action.type) {
         case SET_BOOKING_SEATS:
             return {
-                ...state
+                ...state,
+                bookedSeats: action.payload
             }
         default: return state;
     }

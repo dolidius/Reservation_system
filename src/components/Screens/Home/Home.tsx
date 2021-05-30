@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import { getSeats } from '../../../redux/actions/seatsActions';
 
-
 import { Form, InputNumber, Button, Checkbox } from 'antd';
 
 import { RouteComponentProps } from 'react-router-dom';
@@ -23,11 +22,9 @@ const Home: React.FC<IProps>  = ({ history, getSeats }) => {
     const [form] = Form.useForm();
 
     const onFinish = (values: IFormValues) => {
-        console.log(values);
         getSeats(values.tickets_number, values.next_to_each_other);
         history.push({
             pathname: "/rezerwacja",
-            state: values
         });
     }
 
