@@ -9,6 +9,8 @@ interface IProps {
     gridX: number;
     gridY: number;
     seats: ISeat[];
+    seatsToChoose: number;
+    nextToEachOther: boolean;
 }
 
 interface IInterval {
@@ -17,13 +19,13 @@ interface IInterval {
     row: number;
 }
 
-const Seats: React.FC<IProps> = ({ gridX, gridY, seats }) => {
+const Seats: React.FC<IProps> = ({ gridX, gridY, seats, seatsToChoose, nextToEachOther }) => {
 
+    const [intervals, setIntervals] = useState<IInterval[]>([]);
 
     useEffect(() => {
-        console.log(seats);
-        findCloseSeats();
-    }, [seats])
+        chooseDefaultSeats()
+    }, [])
 
     const findCloseSeats = () => {
 
@@ -60,7 +62,7 @@ const Seats: React.FC<IProps> = ({ gridX, gridY, seats }) => {
 
                     }
 
-                }  
+                }
 
             }
 
@@ -71,9 +73,69 @@ const Seats: React.FC<IProps> = ({ gridX, gridY, seats }) => {
 
         intervals.sort((int1: IInterval, int2: IInterval) => (
             (int1.endY - int1.startY) + 1 < (int2.endY - int2.startY) + 1 ? 1 : -1
-        ))
+        ));
 
-        console.log(intervals);
+        const pickedIntervals: IInterval[] = [];
+
+        let amountToChoose = seatsToChoose;
+
+        for (const interval of intervals) {
+            console.log(interval);
+            const intervalLength = (interval.endY - interval.startY) + 1;
+
+            if (intervalLength === amountToChoose) {
+                pickedIntervals.push(interval);
+                amountToChoose = 0;
+                break;
+            } else if (intervalLength > amountToChoose) {
+                pickedIntervals.push({
+                    startY: interval.startY,
+                    endY: (interval.startY + amountToChoose) - 1,
+                    row: interval.row
+                });
+                amountToChoose = 0;
+                break;
+            } else {
+                pickedIntervals.push(interval);
+                amountToChoose -= intervalLength;
+            }
+
+        }
+
+        setIntervals(pickedIntervals);
+
+    }
+
+    const findFristAvailableSeats = () => {
+        const intervals: IInterval[] = [];
+
+        let amount = 0;
+
+        for (const seat of seats) {
+            const { x, y } = seat.cords;
+
+            if (!seat.reserved) {
+                intervals.push({startY: y, endY: y, row: x});
+                amount ++;
+            }
+
+            if (amount === seatsToChoose) {
+                break;
+            }
+
+        }
+
+        setIntervals(intervals);
+
+    }
+
+    const chooseDefaultSeats = () => {
+
+        if (!nextToEachOther) {
+            findFristAvailableSeats();
+        } else {
+            findCloseSeats();
+        }
 
     }
 

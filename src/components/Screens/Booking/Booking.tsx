@@ -59,6 +59,8 @@ const Booking: React.FC<IProps> = ({ seatsStore }) => {
             gridX={verticalGrid + 1}
             gridY={horizontalGrid + 1}
             seats={seatsStore.seats}
+            seatsToChoose={seatsStore.seatsToChoose}
+            nextToEachOther={seatsStore.nextToEachOther}
         />
     )
 
