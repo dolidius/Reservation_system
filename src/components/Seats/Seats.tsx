@@ -176,14 +176,44 @@ const Seats: React.FC<IProps> = ({ gridX, gridY, seats, seatsToChoose, nextToEac
         return "available";
     }
 
+    const onSeatAvailableClick = (x: number, y: number) => {
+
+        if (chosenSeats.length < seatsToChoose) {
+            setChosenSeats([]);
+
+            let newChosenSeats = chosenSeats;
+
+            newChosenSeats.push({ x, y });
+
+            console.log(newChosenSeats);
+
+            setChosenSeats([...newChosenSeats]);
+        }
+
+    }
+
+    const onSeatChosenClick = (x: number, y: number) => {
+
+        let newChosenSeats = chosenSeats;
+
+        newChosenSeats = newChosenSeats.filter(seat => seat.x != x || seat.y != y);
+
+        console.log(newChosenSeats);
+
+        setChosenSeats(newChosenSeats);
+
+    }
+
     return (
         <SeatsGrid gridX={gridX} gridY={gridY}>
-            {chosenSeats.length > 0 && seats.map(seat => {
+            {seats.map(seat => {
                 return (
                     <Seat
                         type={getSeatType(seat)}
                         col={seat.cords.y + 1}
                         row={seat.cords.x + 1}
+                        onSeatAvailableClick={onSeatAvailableClick}
+                        onSeatChosenClick={onSeatChosenClick}
                     />
                 )
             })}
