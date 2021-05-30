@@ -5,19 +5,35 @@ interface ISeatProps {
     row: number;
 }
 
+interface ISeatProps {
+    grid: boolean;
+    col: number;
+    row: number;
+}
+
 export const Seat = styled.div`
-    width: 43px;
-    height: 43px;
+    width: 39px;
+    height: 39px;
 
     background: transparent;
     border-radius: 3px;
     margin: 2px 0;
 
-    grid-column-start: ${(props: ISeatProps) => props.col};
+    ${({ grid, col, row }: ISeatProps) =>
+        grid &&
+        `
+        grid-column-start: ${col};
+        grid-column-end: ${col + 1};
+    
+        grid-row-start: ${row};
+        grid-row-end: ${row + 1};
+    `}
+
+    /* grid-column-start: ${(props: ISeatProps) => props.col};
     grid-column-end: ${(props: ISeatProps) => props.col + 1};
 
     grid-row-start: ${(props: ISeatProps) => props.row};
-    grid-row-end: ${(props: ISeatProps) => props.row + 1};
+    grid-row-end: ${(props: ISeatProps) => props.row + 1}; */
 
 `;
 

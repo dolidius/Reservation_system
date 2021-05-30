@@ -7,9 +7,12 @@ import { connect } from 'react-redux';
 import { setBookingSeats } from '../../redux/actions/bookingActions';
 
 import SeatsGridContainer from './SeatsGridContainer';
+import Legend from './Legend/Legend';
 
-import { Button } from 'antd';
+import { Box, Button } from '@material-ui/core';
+
 import { RouteComponentProps } from 'react-router-dom';
+import { BookButton, Footer, Spacer } from './Seats.style';
 
 interface IProps {
     history: RouteComponentProps['history'],
@@ -195,9 +198,15 @@ const Seats: React.FC<IProps> = ({ history, gridX, gridY, seats, seatsToChoose, 
                 onSeatChosenClick={onSeatChosenClick}
             />
 
-            <Button onClick={submitSeats} type="primary">
-                Rezerwuj
-            </Button>
+            <Footer>
+                <Legend />
+
+                <BookButton onClick={submitSeats} color="primary" variant="contained">
+                    Rezerwuj
+                </BookButton>
+            </Footer>
+
+
         </div>
     )
 }

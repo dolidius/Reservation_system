@@ -14,9 +14,9 @@ const Seat: React.FC<IProps> = ({ type, col, row, onSeatAvailableClick, onSeatCh
 
     return (
         <>
-            {type === 'available' && <AvailableSeat onClick={() => onSeatAvailableClick(row - 1, col - 1)} col={col} row={row} />}
-            {type === 'chosen' && <ChosenSeat onClick={() => onSeatChosenClick(row - 1, col - 1)} col={col} row={row} />}
-            {type === 'reserved' && <ReservedSeat col={col} row={row} />}
+            {type === 'available' && <AvailableSeat grid onClick={() => onSeatAvailableClick(row - 1, col - 1)} col={col} row={row} />}
+            {type === 'chosen' && <ChosenSeat grid onClick={() => onSeatChosenClick(row - 1, col - 1)} col={col} row={row} />}
+            {type === 'reserved' && <ReservedSeat grid col={col} row={row} />}
 
         </>
     )

@@ -23,16 +23,4 @@ export const ViewportContainer = styled.div`
     `}
 
     background: #251464;
-
-    /* background: #D3CCE3; 
-    background: -webkit-linear-gradient(
-        to right,
-        #e9e4f0,
-        #d3cce3
-    ); 
-    background: linear-gradient(
-        to right,
-        #e9e4f0,
-        #d3cce3
-    );  */
 `;
