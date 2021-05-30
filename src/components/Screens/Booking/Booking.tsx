@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import ISeatsState from '../../../interfaces/storeStates/ISeatsState';
 
 import Seats from '../../Seats/Seats';
-import Spinner from '../../Helpers/Spinner/Spinner';
 
 import IFormValues from '../../../interfaces/IFormValues';
 import { RouteComponentProps } from 'react-router-dom';
 import { ViewportContainer } from '../../../styles/Layout/Container.style';
 import { SeatsContainer } from './Booking.style';
+
+import { CircularProgress } from '@material-ui/core';
 
 interface IProps {
     history: RouteComponentProps['history'],
@@ -54,7 +55,9 @@ const Booking: React.FC<IProps> = ({ history, seatsStore }) => {
 
     if (seatsStore.loading) {
         return (
-            <Spinner />
+            <ViewportContainer centered>
+                <CircularProgress color="primary" size={150} />
+            </ViewportContainer>
         )
     }
 
