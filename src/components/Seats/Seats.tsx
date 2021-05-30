@@ -185,8 +185,6 @@ const Seats: React.FC<IProps> = ({ gridX, gridY, seats, seatsToChoose, nextToEac
 
             newChosenSeats.push({ x, y });
 
-            console.log(newChosenSeats);
-
             setChosenSeats([...newChosenSeats]);
         }
 
@@ -197,8 +195,6 @@ const Seats: React.FC<IProps> = ({ gridX, gridY, seats, seatsToChoose, nextToEac
         let newChosenSeats = chosenSeats;
 
         newChosenSeats = newChosenSeats.filter(seat => seat.x != x || seat.y != y);
-
-        console.log(newChosenSeats);
 
         setChosenSeats(newChosenSeats);
 
