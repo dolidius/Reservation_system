@@ -1,18 +1,14 @@
-import React, { useEffect } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router-dom';
 
 import { getSeats } from '../../../redux/actions/seatsActions';
 
-import { Form, InputNumber, Checkbox } from 'antd';
-import Button from '@material-ui/core/Button';
-
-
-import { RouteComponentProps } from 'react-router-dom';
+import { Button, TextField, Checkbox, FormControlLabel, Box } from '@material-ui/core';
 
 import { ViewportContainer } from '../../../styles/Layout/Container.style';
+import { FormContainer } from './HomeForm.style';
 
-import IFormValues from '../../../interfaces/IFormValues';
 
 interface IProps {
     history: RouteComponentProps['history'];
@@ -21,32 +17,59 @@ interface IProps {
 
 const Home: React.FC<IProps> = ({ history, getSeats }) => {
 
-    const [form] = Form.useForm();
+    const [ticketsNumber, setTicketsNumber] = useState("0");
+    const [nextToEachOther, setNextToEachOther] = useState(false);
 
-    const onFinish = (values: IFormValues) => {
-        getSeats(values.tickets_number, values.next_to_each_other);
+    const onFinish = (e: any) => {
+        e.preventDefault();
+        getSeats(parseInt(ticketsNumber), nextToEachOther);
         history.push({
             pathname: "/rezerwacja",
         });
     }
 
+    const handleTicketsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setTicketsNumber(event.target.value);
+    };
+
+    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setNextToEachOther(event.target.checked)
+    }
+
     return (
         <ViewportContainer centered>
-                <Form form={form} name="tickets" onFinish={onFinish}>
-                    <Form.Item label="Liczba miejsc" name="tickets_number" rules={[{ required: true }]}>
-                        <InputNumber />
-                    </Form.Item>
-                    <Form.Item name="next_to_each_other" valuePropName="checked" initialValue={false}>
-                        <Checkbox>
-                            Czy miejsca mają być obok siebie?
-                    </Checkbox>
-                    </Form.Item>
-                    <Form.Item>
-                        <Button variant="contained" color="primary">
-                            Submit
+            <FormContainer onSubmit={onFinish}>
+                <TextField
+                    required
+                    id="filled-required"
+                    label="Liczba Miejsc"
+                    value={ticketsNumber}
+                    onChange={handleTicketsChange}
+                    variant="standard"
+                    placeholder="0"
+                    type="number"
+                    size="medium"
+                />
+                <Box py={1}>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={nextToEachOther}
+                                onChange={handleCheckboxChange}
+                                color="primary"
+                            />
+                        }
+                        label="Czy miejsca mają być obok siebie?"
+                    />
+                </Box>
+
+                <Box>
+                    <Button size="large" fullWidth={false} variant="contained" color="primary" type="submit">
+                        Wybierz miejsca
                     </Button>
-                    </Form.Item>
-                </Form>
+                </Box>
+
+            </FormContainer>
         </ViewportContainer>
     )
 }

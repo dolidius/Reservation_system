@@ -22,7 +22,15 @@ export const ViewportContainer = styled.div`
         align-items: center;
     `}
 
-    background: linear-gradient(rgba(0,0,0, 0.9), rgba(0,0,0, 0.8)), url('https://images.pexels.com/photos/375885/pexels-photo-375885.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-    background-size: cover;
-    background-position: center;
+    /* background: #D3CCE3; 
+    background: -webkit-linear-gradient(
+        to right,
+        #e9e4f0,
+        #d3cce3
+    ); 
+    background: linear-gradient(
+        to right,
+        #e9e4f0,
+        #d3cce3
+    );  */
 `;
