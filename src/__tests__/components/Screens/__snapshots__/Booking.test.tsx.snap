@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Booking /> should render correctly given seats data from store 1`] = `
+<div
+  className="sc-dIsUp dSxnkT"
+>
+  <div
+    className="sc-bqGGPW kgDsjW"
+  >
+    <div>
+      <div
+        className="sc-eCApnc jYyZCg"
+      >
+        <div
+          className="sc-bdnxRM sc-gtsrHT jsDwqN gtVyJb"
+          onClick={[Function]}
+        />
+        <div
+          className="sc-bdnxRM sc-gtsrHT ifDRTZ gtVyJb"
+          onClick={[Function]}
+        />
+        <div
+          className="sc-bdnxRM sc-gtsrHT dqnsBR gtVyJb"
+          onClick={[Function]}
+        />
+        <div
+          className="sc-bdnxRM sc-gtsrHT hrOdqx gtVyJb"
+          onClick={[Function]}
+        />
+        <div
+          className="sc-bdnxRM sc-gtsrHT dYaCah gtVyJb"
+          onClick={[Function]}
+        />
+        <div
+          className="sc-bdnxRM sc-hKFxyN cKTuvJ cIwBOA"
+        />
+        <div
+          className="sc-bdnxRM sc-hKFxyN jiqDkV cIwBOA"
+        />
+        <div
+          className="sc-bdnxRM sc-gtsrHT dOddcV gtVyJb"
+          onClick={[Function]}
+        />
+        <div
+          className="sc-bdnxRM sc-gtsrHT hhFeGh gtVyJb"
+          onClick={[Function]}
+        />
+        <div
+          className="sc-bdnxRM sc-gtsrHT koiqmx gtVyJb"
+          onClick={[Function]}
+        />
+        <div
+          className="sc-bdnxRM sc-gtsrHT egFetR gtVyJb"
+          onClick={[Function]}
+        />
+        <div
+          className="sc-bdnxRM sc-gtsrHT bVzAaN gtVyJb"
+          onClick={[Function]}
+        />
+        <div
+          className="sc-bdnxRM sc-gtsrHT gIDtnZ gtVyJb"
+          onClick={[Function]}
+        />
+      </div>
+      <div
+        className="MuiBox-root MuiBox-root-1"
+      >
+        <p
+          className="MuiTypography-root MuiTypography-body1"
+          style={
+            Object {
+              "color": "#fff",
+            }
+          }
+        >
+          Pozostałe miejsca do wyboru: 
+          0
+        </p>
+      </div>
+      <div
+        className="sc-jSFjdj hVmDVn"
+      >
+        <div
+          className="sc-fujyAs eWqvMj"
+        >
+          <div
+            className="sc-bdnxRM sc-gtsrHT bXcdnt gtVyJb"
+          />
+          <span
+            className="sc-pNWdM coaiQI"
+          >
+            Miejsca dostępne
+          </span>
+        </div>
+        <div
+          className="sc-fujyAs eWqvMj"
+        >
+          <div
+            className="sc-bdnxRM sc-hKFxyN bXcdnt cIwBOA"
+          />
+          <span
+            className="sc-pNWdM coaiQI"
+          >
+            Miejsca zarezerowane
+          </span>
+        </div>
+        <div
+          className="sc-fujyAs eWqvMj"
+        >
+          <div
+            className="sc-bdnxRM sc-dlnjwi bXcdnt ilOmwR"
+          />
+          <span
+            className="sc-pNWdM coaiQI"
+          >
+            Twój wybór
+          </span>
+        </div>
+        <button
+          className="MuiButtonBase-root MuiButton-root MuiButton-contained sc-gKAaRy eALtjc MuiButton-containedPrimary"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
+        >
+          <span
+            className="MuiButton-label"
+          >
+            Rezerwuj
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

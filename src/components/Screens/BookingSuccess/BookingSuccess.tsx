@@ -27,7 +27,7 @@ const BookingSuccess: React.FC<IProps> = ({ bookingStore }) => {
                 </Box>
 
                 {bookingStore.bookedSeats.map(seat => (
-                    <SeatTypography>
+                    <SeatTypography key={`s${seat.x}${seat.y}`}>
                         -rząd {seat.x}, miejsce {seat.y}, s{`${seat.x}${seat.y}`}
                     </SeatTypography>
                 ))}

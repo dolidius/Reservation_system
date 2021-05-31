@@ -42,6 +42,7 @@ const SeatsGridContainer: React.FC<IProps> = ({ gridX, gridY, seats, chosenSeats
             {seats.map(seat => {
                 return (
                     <Seat
+                        key={`s${seat.cords.x}${seat.cords.y}`}
                         type={getSeatType(seat)}
                         col={seat.cords.y + 1}
                         row={seat.cords.x + 1}
