@@ -1,8 +1,7 @@
-import { yellow } from "@material-ui/core/colors";
 import IInterval from "../interfaces/IInterval";
 import ISeat from "../interfaces/ISeat";
 
-export default (seats: ISeat[]) => {
+const getRowIntervals = (seats: ISeat[]) => {
  
     const intervals: IInterval[] = [];
 
@@ -53,3 +52,5 @@ export default (seats: ISeat[]) => {
     return intervals;
     
 }
+
+export default getRowIntervals;

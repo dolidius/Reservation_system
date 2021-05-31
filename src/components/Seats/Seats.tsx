@@ -11,7 +11,7 @@ import SeatsModals from './SeatsModal/SeatsModals';
 import { setBookingSeats } from '../../redux/actions/bookingActions';
 
 import { RouteComponentProps } from 'react-router-dom';
-import { BookButton, Footer, Spacer } from './Seats.style';
+import { BookButton, Footer } from './Seats.style';
 import { Box, Typography } from '@material-ui/core';
 import IInterval from '../../interfaces/IInterval';
 
@@ -119,7 +119,7 @@ const Seats: React.FC<IProps> = ({ history, gridX, gridY, seats, seatsToChoose, 
     const onSeatChosenClick = (x: number, y: number) => {
 
         let newChosenSeats = chosenSeats;
-        newChosenSeats = newChosenSeats.filter(seat => seat.x != x || seat.y != y);
+        newChosenSeats = newChosenSeats.filter(seat => seat.x !== x || seat.y !== y);
         setChosenSeats(newChosenSeats);
 
     }
@@ -128,7 +128,7 @@ const Seats: React.FC<IProps> = ({ history, gridX, gridY, seats, seatsToChoose, 
 
         let chosenNum = seatsToChoose - chosenSeats.length;
 
-        if (chosenNum != 0) {
+        if (chosenNum !== 0) {
             setModalOpened(true);
         } else {
             bookSeats();

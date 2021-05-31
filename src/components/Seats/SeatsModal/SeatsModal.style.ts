@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Button } from '@material-ui/core';
 
 export const ModalView = styled.div`
     width: 100%;

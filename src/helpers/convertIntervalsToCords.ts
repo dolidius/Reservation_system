@@ -1,7 +1,7 @@
 import ICords from "../interfaces/ICords";
 import IInterval from "../interfaces/IInterval";
 
-export default (intervals: IInterval[]) => {
+const convertIntervalsToCords = (intervals: IInterval[]) => {
     const cords: ICords[] = [];
 
     intervals.forEach((interval) => {
@@ -12,3 +12,5 @@ export default (intervals: IInterval[]) => {
 
     return cords;
 };
+
+export default convertIntervalsToCords;

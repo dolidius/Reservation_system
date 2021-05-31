@@ -5,7 +5,6 @@ import ISeatsState from '../../../interfaces/storeStates/ISeatsState';
 
 import Seats from '../../Seats/Seats';
 
-import IFormValues from '../../../interfaces/IFormValues';
 import { RouteComponentProps } from 'react-router-dom';
 import { ViewportContainer } from '../../../styles/Layout/Container.style';
 import { SeatsContainer } from './Booking.style';
