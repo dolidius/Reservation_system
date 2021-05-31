@@ -4,12 +4,12 @@ import ISeat from '../../interfaces/ISeat';
 
 import { connect } from 'react-redux';
 
-import { setBookingSeats } from '../../redux/actions/bookingActions';
-import { setNewTicketsAmount } from '../../redux/actions/seatsActions';
-
 import SeatsGridContainer from './SeatsGridContainer';
 import Legend from './Legend/Legend';
 import SeatsModal from './SeatsModal/SeatsModal';
+import SeatsModals from './SeatsModal/SeatsModals';
+
+import { setBookingSeats } from '../../redux/actions/bookingActions';
 
 import { RouteComponentProps } from 'react-router-dom';
 import { BookButton, Footer, Spacer } from './Seats.style';
@@ -23,7 +23,6 @@ interface IProps {
     seatsToChoose: number;
     nextToEachOther: boolean;
     setBookingSeats: (bookedSeats: ICords[]) => object;
-    setNewTicketsAmount: (seatsToChoose: number) => object;
 }
 
 interface IInterval {
@@ -32,40 +31,16 @@ interface IInterval {
     row: number;
 }
 
-const Seats: React.FC<IProps> = ({ history, gridX, gridY, seats, seatsToChoose, nextToEachOther, setBookingSeats, setNewTicketsAmount }) => {
+const Seats: React.FC<IProps> = ({ history, gridX, gridY, seats, seatsToChoose, nextToEachOther, setBookingSeats }) => {
 
     const [chosenSeats, setChosenSeats] = useState<ICords[]>([]);
 
     const [isModalOpened, setModalOpened] = useState(false);
 
-    const [tooManyTickets, setTooManyTickets] = useState(false);
-    const [maximumTickets, setMaximumTickets] = useState(0);
 
     useEffect(() => {
-
-        let maximumTickets: number = calculateMaximumTickets();
-
-        if (seatsToChoose > maximumTickets) {
-            setTooManyTickets(true);
-            setMaximumTickets(maximumTickets);
-        }
-
         chooseDefaultSeats()
     }, [])
-
-    const calculateMaximumTickets = () => {
-
-        let availableTickets = 0;
-
-        seats.forEach(seat => {
-            if (!seat.reserved) {
-                availableTickets++;
-            }
-        })
-
-        return availableTickets;
-
-    }
 
     const findCloseSeats = () => {
 
@@ -230,17 +205,6 @@ const Seats: React.FC<IProps> = ({ history, gridX, gridY, seats, seatsToChoose, 
         setModalOpened(false);
     }
 
-    const tooManyTicketsBack = () => {
-        history.push({
-            pathname: "/",
-        });
-    }
-
-    const continueWithMaximum = () => {
-        setNewTicketsAmount(maximumTickets);
-        setTooManyTickets(false);
-    }
-
     return (
         <div>
             <SeatsGridContainer
@@ -252,21 +216,15 @@ const Seats: React.FC<IProps> = ({ history, gridX, gridY, seats, seatsToChoose, 
                 onSeatChosenClick={onSeatChosenClick}
             />
 
-            {isModalOpened &&
-                <SeatsModal
-                    continueBooking={bookSeats}
-                    back={tooManyTicketsBack}
-                    message="Wybrano inną ilość miejsc niż na początku, kontynuować mimo to?"
-                />
-            }
-
-            {tooManyTickets &&
-                <SeatsModal
-                    continueBooking={continueWithMaximum}
-                    back={tooManyTicketsBack}
-                    message={`Niestety nie mamy tyle dostępnych biletów, kontynuuwać z maskymalną ilością równą ${maximumTickets}?`}
-                />
-            }
+            <SeatsModals
+                history={history}
+                seats={seats}
+                seatsToChoose={seatsToChoose}
+                tooFewChosen={isModalOpened}
+                back={closeModal}
+                chosenSeats={chosenSeats}
+                bookSeats={bookSeats}
+            />
 
             <Box mt={5}>
                 <Typography style={{ color: '#fff' }}>Pozostałe miejsca do wyboru: {seatsToChoose - chosenSeats.length}</Typography>
@@ -285,4 +243,4 @@ const Seats: React.FC<IProps> = ({ history, gridX, gridY, seats, seatsToChoose, 
     )
 }
 
-export default connect(null, { setBookingSeats, setNewTicketsAmount })(Seats);
+export default connect(null, { setBookingSeats })(Seats);
