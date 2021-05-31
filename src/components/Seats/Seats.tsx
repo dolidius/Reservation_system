@@ -9,8 +9,6 @@ import { setBookingSeats } from '../../redux/actions/bookingActions';
 import SeatsGridContainer from './SeatsGridContainer';
 import Legend from './Legend/Legend';
 
-import { Box, Button } from '@material-ui/core';
-
 import { RouteComponentProps } from 'react-router-dom';
 import { BookButton, Footer, Spacer } from './Seats.style';
 
@@ -180,7 +178,6 @@ const Seats: React.FC<IProps> = ({ history, gridX, gridY, seats, seatsToChoose, 
     const submitSeats = () => {
 
         setBookingSeats(chosenSeats);
-        console.log('elo')
 
         history.push({
             pathname: "/rezerwacja/success",

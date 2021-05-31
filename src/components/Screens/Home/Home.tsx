@@ -20,7 +20,7 @@ const theme = createMuiTheme({
 
 interface IProps {
     history: RouteComponentProps['history'];
-    getSeats: (seatsToChoose: number, nextToEachOther: boolean) => void;
+    getSeats: (seatsToChoose: number, nextToEachOther: boolean, history: RouteComponentProps['history']) => void;
 }
 
 const Home: React.FC<IProps> = ({ history, getSeats }) => {
@@ -30,10 +30,10 @@ const Home: React.FC<IProps> = ({ history, getSeats }) => {
 
     const onFinish = (e: any) => {
         e.preventDefault();
-        getSeats(parseInt(ticketsNumber), nextToEachOther);
-        history.push({
-            pathname: "/rezerwacja",
-        });
+
+        const ticketsParsed = parseInt(ticketsNumber);
+
+        getSeats(ticketsParsed, nextToEachOther, history);
     }
 
     const handleTicketsChange = (event: React.ChangeEvent<HTMLInputElement>) => {

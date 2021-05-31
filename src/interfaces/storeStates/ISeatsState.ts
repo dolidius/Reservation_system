@@ -5,4 +5,6 @@ export default interface ISeatsState {
     seats: ISeat[];
     seatsToChoose: number;
     nextToEachOther: boolean;
+    error: boolean;
+    errorMessage: string;
 }
