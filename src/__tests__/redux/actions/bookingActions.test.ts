@@ -2,7 +2,7 @@ import { SET_BOOKING_SEATS } from './../../../redux/types/bookingTypes';
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 
-import { seats, bookedSeats } from "../../../mock_data";
+import { bookedSeats } from "../../../mock_data";
 
 import { setBookingSeats } from '../../../redux/actions/bookingActions';
 
