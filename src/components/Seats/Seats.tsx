@@ -4,7 +4,7 @@ import ISeat from '../../interfaces/ISeat';
 
 import { connect } from 'react-redux';
 
-import SeatsGridContainer from './SeatsGridContainer';
+import SeatsGridContainer from './SeatsGridContainer/SeatsGridContainer';
 import Legend from './Legend/Legend';
 import SeatsModals from './SeatsModal/SeatsModals';
 

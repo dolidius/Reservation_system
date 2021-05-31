@@ -1,9 +1,9 @@
 import React from 'react';
-import ICords from '../../interfaces/ICords';
-import ISeat from '../../interfaces/ISeat';
-import Seat from './Seat/Seat';
+import ICords from '../../../interfaces/ICords';
+import ISeat from '../../../interfaces/ISeat';
+import Seat from '../Seat/Seat';
 
-import { SeatsGrid } from './Seats.style';
+import { SeatsGrid } from '../Seats.style';
 
 interface IProps {
     gridX: number;
