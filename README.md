@@ -26,7 +26,7 @@ $ cd api
 $ npm install
 ```
 
-Then you can start the app using: 
+Then you can start the app using in Reservation_system repository: 
 ```sh
 $ npm run dev
 ```
