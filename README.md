@@ -31,8 +31,6 @@ Then you can start the app using in Reservation_system repository:
 $ npm run dev
 ```
 
-Having installed packages 
-
 ## Description
 
 App is written using React, Redux, Typescript and design system called Material-UI. 
