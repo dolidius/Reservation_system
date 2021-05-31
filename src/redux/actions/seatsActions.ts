@@ -17,16 +17,21 @@ export const getSeats =
         dispatch(setSeatsLoading());
 
         if (seatsToChoose <= 0) {
-            dispatch({
+            return dispatch({
                 type: SEATS_ERROR,
                 payload: {
                     errorMessage: `Nie można zarezerwować ${seatsToChoose} biletów`,
                 },
             });
         } else {
-            axios
+            return axios
                 .get("/seats", config)
                 .then((res) => {
+
+                    history.push({
+                        pathname: "/rezerwacja",
+                    });
+
                     dispatch({
                         type: GET_SEATS,
                         payload: {
@@ -35,9 +40,7 @@ export const getSeats =
                             seats: res.data,
                         },
                     });
-                    history.push({
-                        pathname: "/rezerwacja",
-                    });
+                    
                 })
                 .catch((e) => console.log(e));
         }
