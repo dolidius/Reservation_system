@@ -104,3 +104,10 @@ export const seats =  [
       "reserved": false
     },
 ];
+
+export const bookedSeats = [
+  {x: 1, y: 2},
+  {x: 1, y: 3},
+  {x: 3, y: 4},
+  {x: 0, y: 5},
+]
