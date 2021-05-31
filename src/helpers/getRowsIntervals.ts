@@ -1,3 +1,4 @@
+import { yellow } from "@material-ui/core/colors";
 import IInterval from "../interfaces/IInterval";
 import ISeat from "../interfaces/ISeat";
 
@@ -21,7 +22,7 @@ export default (seats: ISeat[]) => {
                 startY = y;
             }
 
-        } else if (x > lastX || y - 1 !== lastY || seat.reserved) {
+        } else if (x > lastX || y - 1 !== lastY ||seat.reserved) {
             endY = lastY;
             intervals.push({
                 startY, endY, row: x > lastX ? lastX : x
@@ -32,6 +33,11 @@ export default (seats: ISeat[]) => {
             } else {
                 startY = y;
             }
+
+        } else if (seats[seats.length - 1] === seat && !seat.reserved) {
+            intervals.push({
+                startY, endY: y, row: x
+            })
 
         }
 

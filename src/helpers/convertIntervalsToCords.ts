@@ -10,5 +10,7 @@ export default (intervals: IInterval[]) => {
         }
     });
 
+    console.log(cords);
+
     return cords;
 };
