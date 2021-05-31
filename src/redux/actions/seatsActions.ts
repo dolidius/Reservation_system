@@ -1,4 +1,4 @@
-import { GET_SEATS, SET_SEATS_LOADING, SEATS_ERROR } from "../types/seatsTypes";
+import { GET_SEATS, SET_SEATS_LOADING, SEATS_ERROR, SET_NEW_TICKETS_AMOUNT } from "../types/seatsTypes";
 
 import axios from "axios";
 import { RouteComponentProps } from "react-router-dom";
@@ -46,3 +46,8 @@ export const getSeats =
 export const setSeatsLoading = () => ({
     type: SET_SEATS_LOADING,
 });
+
+export const setNewTicketsAmount = (seatsToChoose: number) => ({
+    type: SET_NEW_TICKETS_AMOUNT,
+    payload: seatsToChoose
+})

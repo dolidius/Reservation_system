@@ -20,7 +20,7 @@ export const Footer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 5rem;
+    margin-top: 1rem;
 `
 
 export const BookButton = styled(Button)`

@@ -1,6 +1,6 @@
 import IReducerAction from '../../interfaces/IReducerAction';
 import ISeatsState from '../../interfaces/storeStates/ISeatsState';
-import { GET_SEATS, SET_SEATS_LOADING, SEATS_ERROR } from '../types/seatsTypes';
+import { GET_SEATS, SET_SEATS_LOADING, SEATS_ERROR, SET_NEW_TICKETS_AMOUNT } from '../types/seatsTypes';
 
 const initialState: ISeatsState = {
     loading: false,
@@ -33,6 +33,11 @@ const seatsReducer = (state: ISeatsState = initialState, action: IReducerAction)
                 loading: false,
                 error: true,
                 errorMessage: action.payload.errorMessage
+            }
+        case SET_NEW_TICKETS_AMOUNT:
+            return {
+                ...state,
+                seatsToChoose: action.payload
             }
         default: 
             return state;
