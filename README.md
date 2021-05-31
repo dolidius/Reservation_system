@@ -14,20 +14,24 @@ $ git clone git@github.com:dolidius/Reservation_system.git
 
 Install the dependencies and start the server and api.
 
-To start react app:
+To install dependencies for react app:
 ```sh
 $ cd Reservation_system
 $ npm install
-$ npm start
 ```
 
-To start API:
+Then install dependencies for api:
 ```sh
-$ cd Reservation_system
 $ cd api
 $ npm install
-$ npm run api
 ```
+
+Then you can start the app using: 
+```sh
+$ npm run dev
+```
+
+Having installed packages 
 
 ## Description
 

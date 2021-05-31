@@ -38,7 +38,9 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "api": "npm run api --prefix api",
+        "dev": "concurrently \"npm start\" \"npm run api\""
     },
     "eslintConfig": {
         "extends": [
@@ -61,6 +63,7 @@
     "devDependencies": {
         "@types/react-test-renderer": "^17.0.1",
         "@types/redux-mock-store": "^1.0.2",
+        "concurrently": "^6.2.0",
         "redux-devtools-extension": "^2.13.9"
     }
 }
