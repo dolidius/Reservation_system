@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 
 import SeatsGridContainer from './SeatsGridContainer';
 import Legend from './Legend/Legend';
-import SeatsModal from './SeatsModal/SeatsModal';
 import SeatsModals from './SeatsModal/SeatsModals';
 
 import { setBookingSeats } from '../../redux/actions/bookingActions';
@@ -17,6 +16,7 @@ import { Box, Typography } from '@material-ui/core';
 import IInterval from '../../interfaces/IInterval';
 
 import getRowsIntervals from '../../helpers/getRowsIntervals';
+import convertIntervalsToCords from '../../helpers/convertIntervalsToCords';
 
 interface IProps {
     history: RouteComponentProps['history'],
@@ -72,22 +72,7 @@ const Seats: React.FC<IProps> = ({ history, gridX, gridY, seats, seatsToChoose, 
         return convertIntervalsToCords(pickedIntervals);
 
     }
-
-    const convertIntervalsToCords = (intervals: IInterval[]) => {
-
-        const defaultSeats: ICords[] = [];
-
-        intervals.forEach(interval => {
-            for (let i = interval.startY; i <= interval.endY; i++) {
-                defaultSeats.push({ x: interval.row, y: i });
-            }
-
-        });
-
-        return defaultSeats;
-
-    }
-
+    
     const findFristAvailableSeats = () => {
         const defaultSeats: ICords[] = [];
 
