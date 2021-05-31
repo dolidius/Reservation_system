@@ -10,6 +10,7 @@ import { ViewportContainer } from '../../../styles/Layout/Container.style';
 import { FormContainer } from './HomeForm.style';
 
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import ISeatsState from '../../../interfaces/storeStates/ISeatsState';
 
 const theme = createMuiTheme({
     palette: {
@@ -21,9 +22,10 @@ const theme = createMuiTheme({
 interface IProps {
     history: RouteComponentProps['history'];
     getSeats: (seatsToChoose: number, nextToEachOther: boolean, history: RouteComponentProps['history']) => void;
+    seatsStore: ISeatsState;
 }
 
-const Home: React.FC<IProps> = ({ history, getSeats }) => {
+const Home: React.FC<IProps> = ({ history, getSeats, seatsStore }) => {
 
     const [ticketsNumber, setTicketsNumber] = useState("0");
     const [nextToEachOther, setNextToEachOther] = useState(false);
@@ -34,6 +36,7 @@ const Home: React.FC<IProps> = ({ history, getSeats }) => {
         const ticketsParsed = parseInt(ticketsNumber);
 
         getSeats(ticketsParsed, nextToEachOther, history);
+
     }
 
     const handleTicketsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,6 +50,8 @@ const Home: React.FC<IProps> = ({ history, getSeats }) => {
     return (
         <ThemeProvider theme={theme} >
             <ViewportContainer centered>
+
+
                 <FormContainer onSubmit={onFinish}>
                     <TextField
                         required
@@ -59,6 +64,13 @@ const Home: React.FC<IProps> = ({ history, getSeats }) => {
                         type="number"
                         size="medium"
                     />
+
+                    {seatsStore.error &&
+                        <Box mt={0.5}>
+                            <Typography color="error">{seatsStore.errorMessage}</Typography>
+                        </Box>
+                    }
+
                     <Box py={1}>
                         <FormControlLabel
                             control={
@@ -86,6 +98,8 @@ const Home: React.FC<IProps> = ({ history, getSeats }) => {
     )
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = (state: any) => ({
+    seatsStore: state.seats
+})
 
 export default connect((mapStateToProps), { getSeats })(Home);
