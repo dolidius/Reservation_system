@@ -4,10 +4,18 @@ import { RouteComponentProps } from 'react-router-dom';
 
 import { getSeats } from '../../../redux/actions/seatsActions';
 
-import { Button, TextField, Checkbox, FormControlLabel, Box } from '@material-ui/core';
+import { Button, TextField, Checkbox, FormControlLabel, Box, Typography } from '@material-ui/core';
 
 import { ViewportContainer } from '../../../styles/Layout/Container.style';
 import { FormContainer } from './HomeForm.style';
+
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+    palette: {
+        type: 'dark'
+    }
+})
 
 
 interface IProps {
@@ -37,40 +45,44 @@ const Home: React.FC<IProps> = ({ history, getSeats }) => {
     }
 
     return (
-        <ViewportContainer centered>
-            <FormContainer onSubmit={onFinish}>
-                <TextField
-                    required
-                    id="filled-required"
-                    label="Liczba Miejsc"
-                    value={ticketsNumber}
-                    onChange={handleTicketsChange}
-                    variant="standard"
-                    placeholder="0"
-                    type="number"
-                    size="medium"
-                />
-                <Box py={1}>
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                checked={nextToEachOther}
-                                onChange={handleCheckboxChange}
-                                color="primary"
-                            />
-                        }
-                        label="Czy miejsca mają być obok siebie?"
+        <ThemeProvider theme={theme} >
+            <ViewportContainer centered>
+                <FormContainer onSubmit={onFinish}>
+                    <TextField
+                        required
+                        id="filled-required"
+                        label="Liczba Miejsc"
+                        value={ticketsNumber}
+                        onChange={handleTicketsChange}
+                        variant="standard"
+                        placeholder="0"
+                        type="number"
+                        size="medium"
                     />
-                </Box>
+                    <Box py={1}>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={nextToEachOther}
+                                    onChange={handleCheckboxChange}
+                                    color="primary"
 
-                <Box>
-                    <Button size="large" fullWidth={false} variant="contained" color="primary" type="submit">
-                        Wybierz miejsca
+                                />
+                            }
+                            label={<Typography style={{ color: '#fff' }}>Czy miejsca mają być obok siebie?</Typography>}
+
+                        />
+                    </Box>
+
+                    <Box>
+                        <Button size="large" fullWidth={false} variant="contained" color="primary" type="submit">
+                            Wybierz miejsca
                     </Button>
-                </Box>
+                    </Box>
 
-            </FormContainer>
-        </ViewportContainer>
+                </FormContainer>
+            </ViewportContainer>
+        </ThemeProvider>
     )
 }
 
