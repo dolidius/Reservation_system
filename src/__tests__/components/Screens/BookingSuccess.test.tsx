@@ -20,7 +20,7 @@ let store = mockStore({
 
 describe("<BookingSuccess />", () => {
 
-    it("should render correctly given seats data from store", () => {
+    it("should render correctly given booked seats data from store", () => {
         const tree = renderer
             .create(
                 <Provider store={store}>

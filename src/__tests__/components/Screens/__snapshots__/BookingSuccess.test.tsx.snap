@@ -1,5 +1,79 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<BookingSuccess /> should render correctly given booked seats data from store 1`] = `
+<div
+  className="sc-gtsrHT eltPMO"
+>
+  <div
+    className="sc-dlnjwi elroaH"
+  >
+    <h1
+      className="sc-hKFxyN hVUWNH"
+    >
+      Twoja rezerwacja przebiegła pomyślnie!
+    </h1>
+    <div
+      className="MuiBox-root MuiBox-root-1"
+    >
+      <h2
+        className="sc-eCApnc gtqReh"
+      >
+        Wybrałeś miejsca:
+      </h2>
+    </div>
+    <p
+      className="sc-jSFjdj jASire"
+    >
+      -rząd 
+      1
+      , miejsce 
+      2
+      , s
+      12
+    </p>
+    <p
+      className="sc-jSFjdj jASire"
+    >
+      -rząd 
+      1
+      , miejsce 
+      3
+      , s
+      13
+    </p>
+    <p
+      className="sc-jSFjdj jASire"
+    >
+      -rząd 
+      3
+      , miejsce 
+      4
+      , s
+      34
+    </p>
+    <p
+      className="sc-jSFjdj jASire"
+    >
+      -rząd 
+      0
+      , miejsce 
+      5
+      , s
+      05
+    </p>
+    <div
+      className="MuiBox-root MuiBox-root-2"
+    >
+      <h2
+        className="sc-eCApnc gtqReh"
+      >
+        Dziękujemy! W razie problemów prosimy o kontakt z działem administracji
+      </h2>
+    </div>
+  </div>
+</div>
+`;
+
 exports[`<BookingSuccess /> should render correctly given seats data from store 1`] = `
 <div
   className="sc-gtsrHT eltPMO"
